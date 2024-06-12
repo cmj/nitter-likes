@@ -1,5 +1,6 @@
 #SPDX-License-Identifier: AGPL-3.0-only
-import std/[asyncdispatch, times, json, random, sequtils, strutils, tables, packedsets, os]
+#import std/[asyncdispatch, times, json, random, sequtils, strutils, tables, packedsets, os]
+import std/[asyncdispatch, times, json, random, strutils, tables, packedsets, os]
 import types
 import experimental/parser/guestaccount
 
@@ -17,6 +18,11 @@ const
     Api.userRestId: 500,
     Api.userScreenName: 500,
     Api.tweetResult: 500,
+    Api.following: 500,
+    Api.followers: 500,
+    Api.favorites: 500,
+    Api.favoriters: 500,
+    Api.retweeters: 500,
     Api.list: 500,
     Api.listTweets: 500,
     Api.listMembers: 500,
@@ -202,7 +208,6 @@ proc initAccountPool*(cfg: Config; path: string) =
     quit 1
 
   let accountsPrePurge = accountPool.len
-  #accountPool.keepItIf(not it.hasExpired)
 
   log "Successfully added ", accountPool.len, " valid accounts."
   if accountsPrePurge > accountPool.len:

@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: AGPL-3.0-only
 import asyncdispatch, strformat, logging
-import config
+#import config
 from net import Port
 from htmlgen import a
 from os import getEnv

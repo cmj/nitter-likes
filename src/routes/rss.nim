@@ -116,7 +116,7 @@ proc createRssRouter*(cfg: Config) =
 
       let searchKey = if tab != "search": ""
                       else: ":" & $hash(genQueryUrl(query))
-
+      
       let key = redisKey(tab, name & searchKey, getCursor())
 
       var rss = await getCachedRss(key)
